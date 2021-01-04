@@ -43,3 +43,11 @@ python -m pip install --upgrade jax jaxlib==0.1.57+cuda101 --find-links https://
 ```
 
 is needed.
+
+## Testing
+
+It is worthwhile in another terminal watching the GPU performance with `nvidia-smi` while running tests
+
+```
+watch --interval 1 nvidia-smi
+```
