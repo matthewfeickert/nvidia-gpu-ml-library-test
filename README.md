@@ -10,7 +10,7 @@ After installing the proper Nvidia drivers for your system create a Python virtu
 python -m pip install -r requirements.txt
 ```
 
-From here the GPU version of `jaxlib` will need to be installed, and can be determined from the version of `jaxlib` that was installed from PyPI and the version of CUDA installed.
+From here the [GPU version of `jaxlib` will need to be installed](https://github.com/google/jax#pip-installation), and can be determined from the version of `jaxlib` that was installed from PyPI and the version of CUDA installed.
 The GPU release can be installed from Google with
 
 ```
