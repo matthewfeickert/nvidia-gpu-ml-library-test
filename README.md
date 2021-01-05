@@ -51,3 +51,24 @@ It is worthwhile in another terminal watching the GPU performance with `nvidia-s
 ```
 watch --interval 1 nvidia-smi
 ```
+
+### Temporary Note
+
+If Nvidia CUDA Toolkit is installed the Ubuntu PPAs with
+
+```
+apt-get install nvidia-cuda-toolkit
+```
+
+CUDA can be found under `/usr/lib/cuda/`.
+To deal with this for the time being run JAX commands prefecaed with
+
+```
+ XLA_FLAGS=--xla_gpu_cuda_data_dir=/usr/lib/cuda/
+```
+
+so for example
+
+```
+XLA_FLAGS=--xla_gpu_cuda_data_dir=/usr/lib/cuda/ python jax_MNIST.py
+```
