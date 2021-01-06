@@ -163,38 +163,34 @@ python -m pip install --upgrade jax jaxlib==0.1.57+cuda101 --find-links https://
 
 is needed.
 
-JAX expectes to find the CUDA directory structure (what is will assign as the environment variable `CUDA_DIR`) under the path `/usr/local/cuda`.
-If NVIDIA CUDA Toolkit was installed through the `nvidia-cuda-toolkit` Ubuntu package CUDA will instead be found under `/usr/lib/cuda/`.
+JAX expectes to find the CUDA directory structure (what is will assign as the environment variable `CUDA_DIR`) under the path `/usr/local/cuda-x.x` where `x.x` is the CUDA version number that `nvcc --version` gives (`10.1` for example).
+If NVIDIA CUDA Toolkit was installed through the `nvidia-cuda-toolkit` Ubuntu package CUDA will instead be found under `/usr/lib/cuda`.
 To make CUDA findable to JAX a symlink can be created
 
 ```
+sudo ln -s /usr/lib/cuda /usr/local/cuda-x.x
+```
+
+**Example:**
+
+```
 sudo ln -s /usr/lib/cuda /usr/local/cuda
+sudo ln -s /usr/lib/cuda /usr/local/cuda-10.1
 ```
 
-and
-
-**TODO:** VERIFY necessary `.profile` changes
-
-If you have questions on this step refer to the [relevant section in the JAX README](https://github.com/google/jax#pip-installation).
-
-### Temporary Note
-
-**JAX**
-
-To deal with this for the time being run JAX commands prefecaed with
+To test the location of the installed CUDA release you can set the following environment variable before importing JAX
 
 ```
- XLA_FLAGS=--xla_gpu_cuda_data_dir=/usr/lib/cuda/
+XLA_FLAGS=--xla_gpu_cuda_data_dir=/path/to/cuda
 ```
 
-so for example
+**Example:**
 
 ```
 XLA_FLAGS=--xla_gpu_cuda_data_dir=/usr/lib/cuda/ python jax_MNIST.py
 ```
 
-Or better symlink to `/usr/local/cuda`
-
+If you have questions on this step refer to the [relevant section in the JAX README](https://github.com/google/jax#pip-installation).
 
 #### TensorFlow
 
