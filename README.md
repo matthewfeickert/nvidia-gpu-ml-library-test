@@ -163,18 +163,24 @@ python -m pip install --upgrade jax jaxlib==0.1.57+cuda101 --find-links https://
 
 is needed.
 
+JAX expectes to find the CUDA directory structure (what is will assign as the environment variable `CUDA_DIR`) under the path `/usr/local/cuda`.
+If NVIDIA CUDA Toolkit was installed through the `nvidia-cuda-toolkit` Ubuntu package CUDA will instead be found under `/usr/lib/cuda/`.
+To make CUDA findable to JAX a symlink can be created
+
+```
+sudo ln -s /usr/lib/cuda /usr/local/cuda
+```
+
+and
+
+**TODO:** VERIFY necessary `.profile` changes
+
+If you have questions on this step refer to the [relevant section in the JAX README](https://github.com/google/jax#pip-installation).
 
 ### Temporary Note
 
 **JAX**
 
-If Nvidia CUDA Toolkit is installed the Ubuntu PPAs with
-
-```
-apt-get install nvidia-cuda-toolkit
-```
-
-CUDA can be found under `/usr/lib/cuda/`.
 To deal with this for the time being run JAX commands prefecaed with
 
 ```
@@ -189,9 +195,6 @@ XLA_FLAGS=--xla_gpu_cuda_data_dir=/usr/lib/cuda/ python jax_MNIST.py
 
 Or better symlink to `/usr/local/cuda`
 
-```
-sudo ln -s /usr/lib/cuda /usr/local/cuda
-```
 
 #### TensorFlow
 
