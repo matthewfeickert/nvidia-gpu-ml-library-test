@@ -234,6 +234,13 @@ For the CUDA directory path we _could_ use our existing symlink of `/usr/local/c
 sudo ln -s /usr/lib/cuda /usr/local/cuda
 ```
 
+The examples are also going to assume that `nvcc` is at `/usr/local/cuda/bin/nvcc` and `cuda.h` is at `/usr/local/cuda/include/cuda.h`, so make additional symlinks of those paths pointing to `/usr/bin/nvcc` and `/usr/include/cuda.h`
+
+```
+sudo ln -s /usr/bin/nvcc /usr/local/cuda/bin/nvcc
+sudo ln -s /usr/include/cuda.h /usr/local/cuda/include/cuda.h
+```
+
 #### Install cuDNN Library
 
 1. Navigate to your `<cudnnpath>` directory containing the cuDNN tar file (exmple: `cudnn-11.1-linux-x64-v8.0.5.39.tgz`)
