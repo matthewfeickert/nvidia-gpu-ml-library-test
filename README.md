@@ -103,6 +103,17 @@ sudo apt-get update -y
 sudo apt-get install -y nvidia-cuda-toolkit
 ```
 
+**Example:**
+
+```
+$ apt show nvidia-cuda-toolkit | head -n 5
+Package: nvidia-cuda-toolkit
+Version: 10.1.243-3
+Priority: extra
+Section: multiverse/devel
+Origin: Ubuntu
+```
+
 After the NVIDIA CUDA Toolkit is installed restart the computer.
 
 **N.B.:** If the NVIDIA drivers are ever changed the NVIDIA CUDA Toolkit will need to be reinstalled.
@@ -230,6 +241,13 @@ It is worthwhile in another terminal watching the GPU performance with `nvidia-s
 ```
 watch --interval 1 nvidia-smi
 ```
+
+## Notes
+
+### Useful GitHub Issues
+
+- [JAX Issue 3984](https://github.com/google/jax/issues/3984): automatic detection for GPU pip install doesn't quite work on ubuntu 20.04
+- [TensorFlow Issue 20271](https://github.com/tensorflow/tensorflow/issues/20271#issuecomment-647113141): ImportError: libcudnn.so.7: cannot open shared object file: No such file or directory
 
 ## Acknowledgements
 
