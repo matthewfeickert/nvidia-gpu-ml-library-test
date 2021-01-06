@@ -10,6 +10,16 @@ These instructions assume working on [Ubuntu 20.04 LTS](https://releases.ubuntu.
 - Linux operating system (assumed to be an Ubuntu LTS) with root access.
 - Python 3.6+ installed  (recommended through [pyenv](https://github.com/pyenv/pyenv) for easy configuration).
 
+**Example:**
+
+This setup has been tested on the following systems:
+
+* Lenovo ThinkPad X1 Extreme laptop
+   - OS: Ubuntu 20.04
+   - GPU: GeForce GTX 1650 with Max-Q Design
+   - NVIDIA Driver: 455
+   - Python: 3.8.6 built from source
+
 ## Setup
 
 ### Installing Python Libraries
