@@ -233,23 +233,53 @@ For the CUDA directory path we can use our existing symlink of `/usr/local/cuda-
 
 #### Install cuDNN Library
 
-1. Navigate to your <cudnnpath> directory containing the cuDNN tar file (exmple: `cudnn-11.1-linux-x64-v8.0.5.39.tgz`).
-2. Unzip the cuDNN libary tarball
+1. Navigate to your `<cudnnpath>` directory containing the cuDNN tar file (exmple: `cudnn-11.1-linux-x64-v8.0.5.39.tgz`)
+2. Untar the cuDNN libary tarball (the untarred directory name is `cuda`)
 
 ```
-$ tar -xzvf cudnn-*-linux-x64-v*.tgz
+tar -xzvf cudnn-*-linux-x64-v*.tgz
 ```
 
+3. Copy the library files into the CUDA Toolkit directory
 
-install .debs and then c.f. installation guide http://docs.nvidia.com/deeplearning/sdk/cudnn-install/index.html which mentions 2.3.1. Tar File Installation
+```
+sudo cp cuda/include/cudnn*.h /usr/local/cuda-10.1/include
+sudo cp cuda/lib64/libcudnn* /usr/local/cuda-10.1/lib64
+```
 
-3. Copy the library files into the CUDA Toolkit directory.
+4. Set the permissions for the files to be universally readable
+
 ```
-$ sudo cp cuda/include/cudnn*.h /usr/local/cuda-10.1/include
-$ sudo cp cuda/lib64/libcudnn* /usr/local/cuda-10.1/lib64
+sudo chmod a+r /usr/local/cuda/include/cudnn*.h /usr/local/cuda/lib64/libcudnn*
 ```
+
+#### Install cuDNN Runtime and Developer Libraries
+
+To use in your applications the cuDNN runtime library, developer library, and code samples should be installed too.
+This can be done with `apt install` from your `<cudnnpath>`.
+
+**Example:**
+
 ```
-$ sudo chmod a+r /usr/local/cuda/include/cudnn*.h /usr/local/cuda/lib64/libcudnn*
+sudo apt install ./libcudnn8_8.0.5.39-1+cuda11.1_amd64.deb
+sudo apt install ./libcudnn8-dev_8.0.5.39-1+cuda11.1_amd64.deb
+sudo apt install ./libcudnn8-samples_8.0.5.39-1+cuda11.1_amd64.deb
+```
+
+#### Test cuDNN Installation
+
+Copy the cuDNN samples to a writable path
+
+```
+cp -r /usr/src/cudnn_samples_v8/ $PWD
+```
+
+then navigate to the `mnistCUDNN` sample directory and compile and run the sample
+
+```
+cd cudnn_samples_v8/mnistCUDNN
+make clean && make
+./mnistCUDNN
 ```
 
 To get libcudnn.so.7 whenhave .8 just
