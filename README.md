@@ -43,7 +43,7 @@ The easiest way to determine the correct NVIDIA driver for your system is to hav
 > Each item in the list should have an indicator light: green if a driver tested with that Ubuntu release is being used, yellow if any other driver is being used, or red if no driver is being used.
 
 Select the recommended NVIDIA driver from the list (proprietary, tested) and then select "Apply Changes" to install the driver.
-After the driver has finished installing, restart the computer to verify the driver has been installed succesfully.
+After the driver has finished installing, restart the computer to verify the driver has been installed successfully.
 If you run
 
 ```
@@ -163,7 +163,7 @@ python -m pip install --upgrade jax jaxlib==0.1.57+cuda101 --find-links https://
 
 is needed.
 
-JAX expectes to find the CUDA directory structure (what is will assign as the environment variable `CUDA_DIR`) under the path `/usr/local/cuda-x.x` where `x.x` is the CUDA version number that `nvcc --version` gives (`10.1` for example).
+JAX expects to find the CUDA directory structure (what is will assign as the environment variable `CUDA_DIR`) under the path `/usr/local/cuda-x.x` where `x.x` is the CUDA version number that `nvcc --version` gives (`10.1` for example).
 If NVIDIA CUDA Toolkit was installed through the `nvidia-cuda-toolkit` Ubuntu package CUDA will instead be found under `/usr/lib/cuda`.
 To make CUDA findable to JAX a symlink can be created
 
@@ -193,11 +193,11 @@ If you have questions on this step refer to the [relevant section in the JAX REA
 
 #### TensorFlow
 
-**WARNING:** This section will be out of date fast, so you'll have to adopt it for your particular circumastnaces.
+**WARNING:** This section will be out of date fast, so you'll have to adopt it for your particular circumstances.
 
 TensorFlow requires the [NVIDIA cuDNN](https://developer.nvidia.com/CUDNN) closed source libraries, which are a pain to get and have quite bad documentation.
 To download the libraries you will need to make an account with NVIDIA and register as a developer, which is also a bad experience.
-Once you've done that go to the [cuDNN download page](https://developer.nvidia.com/rdp/cudnn-download), agreee to the Software License Agreement, and the select the version of cuDNN that matches the version of CUDA your **operating system** has (**the version from `nvidia-smi`** which is not necesarilly the same as the version from `nvcc --version`)
+Once you've done that go to the [cuDNN download page](https://developer.nvidia.com/rdp/cudnn-download), agree to the Software License Agreement, and the select the version of cuDNN that matches the version of CUDA your **operating system** has (**the version from `nvidia-smi`** which is not necessarily the same as the version from `nvcc --version`)
 
 **Example:**
 
@@ -216,8 +216,8 @@ $ nvidia-smi | grep "CUDA Version"
 would indicate that cuDNN v8.0.5 for CUDA 11.1 is the recommended version.
 (This is verified by noting that when clicked on the entry for cuDNN v8.0.5 for CUDA 11.1 lists support for Ubuntu 20.04, but the entry for cuDNN v8.0.5 for CUDA 10.1 lists support only for Ubuntu 18.04.)
 
-Click on the cuDNN release you want to download to see the available libraries for supportes sytem architectures.
-As these instructions are using Ubuntu, download the tarballs and Debian binaries for cuDNN libary and the cuDNN runtime library, developer library, and code samples.
+Click on the cuDNN release you want to download to see the available libraries for supports system architectures.
+As these instructions are using Ubuntu, download the tarballs and Debian binaries for cuDNN library and the cuDNN runtime library, developer library, and code samples.
 
 **Example:**
 
@@ -228,7 +228,7 @@ As these instructions are using Ubuntu, download the tarballs and Debian binarie
 
 Once all the libraries are downloaded locally refer to the [directions for installing on Linux](https://docs.nvidia.com/deeplearning/cudnn/install-guide/index.html#installlinux) in the [cuDNN installation guide](http://docs.nvidia.com/deeplearning/sdk/cudnn-install/index.html).
 The documentation refers to a CUDA directory path (which they generically call `/usr/local/cuda`) and a download path for all of the cuDNN libraries (referred to as `<cudnnpath>`).
-For the CUDA directory path we _could_ use our existing symlink of `/usr/local/cuda-10.1`, but the cuDNN examples all assume the path is `/usr/local/cuda` so it is eaiser to make a new symlink of `/usr/local/cuda` pointing to `/usr/lib/cuda`.
+For the CUDA directory path we _could_ use our existing symlink of `/usr/local/cuda-10.1`, but the cuDNN examples all assume the path is `/usr/local/cuda` so it is easier to make a new symlink of `/usr/local/cuda` pointing to `/usr/lib/cuda`.
 
 ```
 sudo ln -s /usr/lib/cuda /usr/local/cuda
@@ -425,4 +425,4 @@ watch --interval 1 nvidia-smi
 
 ## Acknowledgements
 
-Thanks to [Giordon Stark](https://github.com/kratsg/) who greatly helped me scafold the right approach to this setup, as well as for his help doing system setup comparisons.
+Thanks to [Giordon Stark](https://github.com/kratsg/) who greatly helped me scaffold the right approach to this setup, as well as for his help doing system setup comparisons.
