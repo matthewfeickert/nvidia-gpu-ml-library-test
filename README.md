@@ -55,6 +55,43 @@ from the command line the displayed driver version should match the one you inst
 ##### Command Line
 
 Alternatively, if you are running headless or over a remote connection you can determine and install the correct driver from the command line.
+From the command line run
+
+```
+ubuntu-drivers devices
+```
+
+to get a list of all devices on the machine that need drivers and the recommended drivers.
+
+**Example:**
+
+```
+$ ubuntu-drivers devices
+== /sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0 ==
+modalias : pci:v000010DEd00001F91sv000017AAsd0000229Fbc03sc00i00
+vendor   : NVIDIA Corporation
+model    : TU117M [GeForce GTX 1650 Mobile / Max-Q]
+driver   : nvidia-driver-450 - distro non-free
+driver   : nvidia-driver-450-server - distro non-free
+driver   : nvidia-driver-418-server - distro non-free
+driver   : nvidia-driver-455 - distro non-free recommended
+driver   : nvidia-driver-440-server - distro non-free
+driver   : xserver-xorg-video-nouveau - distro free builtin
+```
+
+You can now either install the supported driver you want directly through `apt`
+
+**Example:**
+
+```
+sudo apt-get install nvidia-driver-455
+```
+
+or you can let `ubnutu-driver` install the recommended driver for you automatically
+
+```
+sudo ubuntu-drivers autoinstall
+```
 
 #### NVIDIA CUDA Toolkit
 
