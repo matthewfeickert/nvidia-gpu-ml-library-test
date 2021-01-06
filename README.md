@@ -34,6 +34,43 @@ python -m pip install -r requirements.txt
 
 #### Ubuntu NVIDIA Drivers
 
+##### Ubuntu's Software & Updates Utility
+
+The easiest way to determine the correct NVIDIA driver for your system is to have it determine it automatically through Ubuntu's [Software & Updates utility and selecting the Drivers tab](https://wiki.ubuntu.com/SoftwareAndUpdatesSettings).
+
+> The "Drivers" tab should begin with a listbox containing a progress bar and the text "Searching for available drivers…" until the search is complete.
+> Once the search is complete, the listbox should list each device for which proprietary drivers could be installed.
+> Each item in the list should have an indicator light: green if a driver tested with that Ubuntu release is being used, yellow if any other driver is being used, or red if no driver is being used.
+
+Select the recommended NVIDIA driver from the list (proprietary, tested) and then select "Apply Changes" to install the driver.
+After the driver has finished installing, restart the computer to verify the driver has been installed succesfully.
+If you run
+
+```
+nvidia-smi
+```
+
+from the command line the displayed driver version should match the one you installed.
+
+##### Command Line
+
+Alternatively, if you are running headless or over a remote connection you can determine and install the correct driver from the command line.
+
+#### NVIDIA CUDA Toolkit
+
+After installing the NVIDIA driver, the [NVIDIA CUDA Toolkit](https://developer.nvidia.com/cuda-toolkit) also needs to be installed.
+This can be done manually by following the instructions on the NVIDIA website, but it can also be done automatically through `apt` installing the [Ubuntu package `nvidia-cuda-toolkit`](https://packages.ubuntu.com/search?keywords=nvidia-cuda-toolkit).
+
+```
+sudo apt-get update -y
+sudo apt-get install -y nvidia-cuda-toolkit
+```
+
+After the NVIDIA CUDA Toolkit is installed restart the computer.
+
+**N.B.:** If the NVIDIA drivers are ever changed the NVIDIA CUDA Toolkit will need to be reinstalled.
+
+
 Now that the system NVIDIA drivers are installed the necessary requirements can be stepped through or the different machine learning backends in order (from easiest to hardest).
 
 #### PyTorch
