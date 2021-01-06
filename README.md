@@ -276,6 +276,54 @@ sudo apt install ./libcudnn8-dev_8.0.5.39-1+cuda11.1_amd64.deb
 sudo apt install ./libcudnn8-samples_8.0.5.39-1+cuda11.1_amd64.deb
 ```
 
+At this point you should have a directory structure for `tree/local/cuda` that looks something like the following
+
+```
+$ tree /usr/local/cuda
+/usr/local/cuda
+├── bin
+│   └── nvcc -> /usr/bin/nvcc
+├── include
+│   ├── cuda.h -> /usr/include/cuda.h
+│   ├── cudnn_adv_infer.h
+│   ├── cudnn_adv_train.h
+│   ├── cudnn_backend.h
+│   ├── cudnn_cnn_infer.h
+│   ├── cudnn_cnn_train.h
+│   ├── cudnn.h
+│   ├── cudnn_ops_infer.h
+│   ├── cudnn_ops_train.h
+│   └── cudnn_version.h
+├── lib64
+│   ├── libcudnn_adv_infer.so
+│   ├── libcudnn_adv_infer.so.8
+│   ├── libcudnn_adv_infer.so.8.0.5
+│   ├── libcudnn_adv_train.so
+│   ├── libcudnn_adv_train.so.8
+│   ├── libcudnn_adv_train.so.8.0.5
+│   ├── libcudnn_cnn_infer.so
+│   ├── libcudnn_cnn_infer.so.8
+│   ├── libcudnn_cnn_infer.so.8.0.5
+│   ├── libcudnn_cnn_train.so
+│   ├── libcudnn_cnn_train.so.8
+│   ├── libcudnn_cnn_train.so.8.0.5
+│   ├── libcudnn_ops_infer.so
+│   ├── libcudnn_ops_infer.so.8
+│   ├── libcudnn_ops_infer.so.8.0.5
+│   ├── libcudnn_ops_train.so
+│   ├── libcudnn_ops_train.so.8
+│   ├── libcudnn_ops_train.so.8.0.5
+│   ├── libcudnn.so
+│   ├── libcudnn.so.8
+│   ├── libcudnn.so.8.0.5
+│   └── libcudnn_static.a
+├── nvvm
+│   └── libdevice -> ../../nvidia-cuda-toolkit/libdevice
+└── version.txt
+
+5 directories, 34 files
+```
+
 #### Test cuDNN Installation
 
 Copy the cuDNN samples to a writable path
@@ -305,6 +353,8 @@ symlink libcudnn.so.8 to libcudnn.so.7
 sudo ln -s /usr/lib/x86_64-linux-gnu/libcudnn.so.8 /usr/lib/x86_64-linux-gnu/libcudnn.so.7
 ```
 
+With this final set of libraries installed restart your computer.
+
 ## Testing
 
 It is worthwhile in another terminal watching the GPU performance with `nvidia-smi` while running tests
@@ -314,6 +364,11 @@ watch --interval 1 nvidia-smi
 ```
 
 ## Notes
+
+### Useful Sites
+
+- The [JAX README](https://github.com/google/jax)
+- [TensorFlow GPU support page](https://www.tensorflow.org/install/gpu) which leads to the **actually useful** listing of [tested build configurations for CUDA and cuDNN versions](https://www.tensorflow.org/install/source#linux)
 
 ### Useful GitHub Issues
 
