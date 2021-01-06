@@ -276,54 +276,6 @@ sudo apt install ./libcudnn8-dev_8.0.5.39-1+cuda11.1_amd64.deb
 sudo apt install ./libcudnn8-samples_8.0.5.39-1+cuda11.1_amd64.deb
 ```
 
-At this point you should have a directory structure for `tree/local/cuda` that looks something like the following
-
-```
-$ tree /usr/local/cuda
-/usr/local/cuda
-├── bin
-│   └── nvcc -> /usr/bin/nvcc
-├── include
-│   ├── cuda.h -> /usr/include/cuda.h
-│   ├── cudnn_adv_infer.h
-│   ├── cudnn_adv_train.h
-│   ├── cudnn_backend.h
-│   ├── cudnn_cnn_infer.h
-│   ├── cudnn_cnn_train.h
-│   ├── cudnn.h
-│   ├── cudnn_ops_infer.h
-│   ├── cudnn_ops_train.h
-│   └── cudnn_version.h
-├── lib64
-│   ├── libcudnn_adv_infer.so
-│   ├── libcudnn_adv_infer.so.8
-│   ├── libcudnn_adv_infer.so.8.0.5
-│   ├── libcudnn_adv_train.so
-│   ├── libcudnn_adv_train.so.8
-│   ├── libcudnn_adv_train.so.8.0.5
-│   ├── libcudnn_cnn_infer.so
-│   ├── libcudnn_cnn_infer.so.8
-│   ├── libcudnn_cnn_infer.so.8.0.5
-│   ├── libcudnn_cnn_train.so
-│   ├── libcudnn_cnn_train.so.8
-│   ├── libcudnn_cnn_train.so.8.0.5
-│   ├── libcudnn_ops_infer.so
-│   ├── libcudnn_ops_infer.so.8
-│   ├── libcudnn_ops_infer.so.8.0.5
-│   ├── libcudnn_ops_train.so
-│   ├── libcudnn_ops_train.so.8
-│   ├── libcudnn_ops_train.so.8.0.5
-│   ├── libcudnn.so
-│   ├── libcudnn.so.8
-│   ├── libcudnn.so.8.0.5
-│   └── libcudnn_static.a
-├── nvvm
-│   └── libdevice -> ../../nvidia-cuda-toolkit/libdevice
-└── version.txt
-
-5 directories, 34 files
-```
-
 #### Test cuDNN Installation
 
 Copy the cuDNN samples to a writable path
@@ -376,7 +328,56 @@ The NVIDIA [cuDNN installation documentation notes](https://docs.nvidia.com/deep
 While we could go and try to install cuDNN `v7.6` from the [cuDNN archives](https://developer.nvidia.com/rdp/cudnn-archive) it turns out that [TensorFlow is okay with](https://github.com/tensorflow/tensorflow/issues/20271#issuecomment-643296453) symlinking `libcudnn.so.8` to a target of `libcudnn.so.7`, so until this causes problems move forward with this approach
 
 ```
-sudo ln -s /usr/lib/x86_64-linux-gnu/libcudnn.so.8 /usr/lib/x86_64-linux-gnu/libcudnn.so.7
+sudo ln -s /usr/lib/cuda/lib64/libcudnn.so.8 /usr/local/cuda/lib64/libcudnn.so.7
+```
+
+You should now have a directory structure for `usr/local/cuda` that looks something like the following
+
+```
+$ tree /usr/local/cuda
+/usr/local/cuda
+├── bin
+│   └── nvcc -> /usr/bin/nvcc
+├── include
+│   ├── cuda.h -> /usr/include/cuda.h
+│   ├── cudnn_adv_infer.h
+│   ├── cudnn_adv_train.h
+│   ├── cudnn_backend.h
+│   ├── cudnn_cnn_infer.h
+│   ├── cudnn_cnn_train.h
+│   ├── cudnn.h
+│   ├── cudnn_ops_infer.h
+│   ├── cudnn_ops_train.h
+│   └── cudnn_version.h
+├── lib64
+│   ├── libcudnn_adv_infer.so
+│   ├── libcudnn_adv_infer.so.8
+│   ├── libcudnn_adv_infer.so.8.0.5
+│   ├── libcudnn_adv_train.so
+│   ├── libcudnn_adv_train.so.8
+│   ├── libcudnn_adv_train.so.8.0.5
+│   ├── libcudnn_cnn_infer.so
+│   ├── libcudnn_cnn_infer.so.8
+│   ├── libcudnn_cnn_infer.so.8.0.5
+│   ├── libcudnn_cnn_train.so
+│   ├── libcudnn_cnn_train.so.8
+│   ├── libcudnn_cnn_train.so.8.0.5
+│   ├── libcudnn_ops_infer.so
+│   ├── libcudnn_ops_infer.so.8
+│   ├── libcudnn_ops_infer.so.8.0.5
+│   ├── libcudnn_ops_train.so
+│   ├── libcudnn_ops_train.so.8
+│   ├── libcudnn_ops_train.so.8.0.5
+│   ├── libcudnn.so
+│   ├── libcudnn.so.7 -> /usr/lib/cuda/lib64/libcudnn.so.8
+│   ├── libcudnn.so.8
+│   ├── libcudnn.so.8.0.5
+│   └── libcudnn_static.a
+├── nvvm
+│   └── libdevice -> ../../nvidia-cuda-toolkit/libdevice
+└── version.txt
+
+5 directories, 35 files
 ```
 
 With this final set of libraries installed restart your computer.
