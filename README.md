@@ -174,7 +174,6 @@ sudo ln -s /usr/lib/cuda /usr/local/cuda-x.x
 **Example:**
 
 ```
-sudo ln -s /usr/lib/cuda /usr/local/cuda
 sudo ln -s /usr/lib/cuda /usr/local/cuda-10.1
 ```
 
@@ -229,7 +228,11 @@ As these instructions are using Ubuntu, download the tarballs and Debian binarie
 
 Once all the libraries are downloaded locally refer to the [directions for installing on Linux](https://docs.nvidia.com/deeplearning/cudnn/install-guide/index.html#installlinux) in the [cuDNN installation guide](http://docs.nvidia.com/deeplearning/sdk/cudnn-install/index.html).
 The documentation refers to a CUDA directory path (which they generically call `/usr/local/cuda`) and a download path for all of the cuDNN libraries (referred to as `<cudnnpath>`).
-For the CUDA directory path we can use our existing symlink of `/usr/local/cuda-10.1` but if it is easier you can create a new symlink of `/usr/local/cuda` pointing to `/usr/lib/cuda`.
+For the CUDA directory path we _could_ use our existing symlink of `/usr/local/cuda-10.1`, but the cuDNN examples all assume the path is `/usr/local/cuda` so it is eaiser to make a new symlink of `/usr/local/cuda` pointing to `/usr/lib/cuda`.
+
+```
+sudo ln -s /usr/lib/cuda /usr/local/cuda
+```
 
 #### Install cuDNN Library
 
@@ -243,8 +246,8 @@ tar -xzvf cudnn-*-linux-x64-v*.tgz
 3. Copy the library files into the CUDA Toolkit directory
 
 ```
-sudo cp cuda/include/cudnn*.h /usr/local/cuda-10.1/include
-sudo cp cuda/lib64/libcudnn* /usr/local/cuda-10.1/lib64
+sudo cp cuda/include/cudnn*.h /usr/local/cuda/include
+sudo cp cuda/lib64/libcudnn* /usr/local/cuda/lib64
 ```
 
 4. Set the permissions for the files to be universally readable
