@@ -16,7 +16,14 @@ This setup has been tested on the following systems:
 
 * Lenovo ThinkPad X1 Extreme laptop
    - OS: Ubuntu 20.04
+   - CPU: Intel Core i7-9750H @ 12x 4.5GHz
    - GPU: GeForce GTX 1650 with Max-Q Design
+   - NVIDIA Driver: 455
+   - Python: 3.8.6 built from source
+* Custom built dekstop
+   - OS: Ubuntu 20.04
+   - CPU: AMD Ryzen 9 3900X 12-Core @ 24x 3.906GHz
+   - GPU: GeForce RTX 2080 Ti
    - NVIDIA Driver: 455
    - Python: 3.8.6 built from source
 
