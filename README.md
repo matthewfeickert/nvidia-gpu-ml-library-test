@@ -405,10 +405,20 @@ With this final set of libraries installed restart your computer.
 
 ## Testing
 
-It is worthwhile in another terminal watching the GPU performance with `nvidia-smi` while running tests
+### Detect GPU
+
+For all of the ML libaries you can now run the `x_detect_GPU.py` tests which test that the library can properly access the GPU and CUDA, where `x` is the library name/nickname.
+
+### MNIST
+
+For all of the ML libraries you can run a simple MNIST test by running `x_MNIST.py`, where `x` is the library name/nickname.
+
+### Monitoring
+
+It is worthwhile in another terminal to watch the GPU performance with `nvidia-smi` while running tests
 
 ```
-watch --interval 1 nvidia-smi
+watch --interval 0.5 nvidia-smi
 ```
 
 ## Notes
