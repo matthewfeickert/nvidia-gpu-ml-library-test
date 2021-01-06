@@ -22,17 +22,17 @@ python -m pip install -r requirements.txt
 
 ### Installing NVIDIA Drivers and CUDA Libraries
 
-### Ubuntu NVIDIA Drivers
+#### Ubuntu NVIDIA Drivers
 
 Now that the system NVIDIA drivers are installed the necessary requirements can be stepped through or the different machine learning backends in order (from easiest to hardest).
 
-### PyTorch
+#### PyTorch
 
 PyTorch makes things very easy by [packaging all of the necessary CUDA libraries with its binary distirbutions](https://discuss.pytorch.org/t/newbie-question-what-are-the-prerequisites-for-running-pytorch-with-gpu/698/3) (which is why they are so huge).
 So by `pip` installing the `torch` wheel all necessary libraries are installed.
 
 
-### JAX
+#### JAX
 
 The [GPU version of `jaxlib` will need to be installed](https://github.com/google/jax#pip-installation), and can be determined from the version of `jaxlib` that was installed from PyPI and the version of CUDA installed.
 The GPU release can be installed from Google with
@@ -60,7 +60,7 @@ Built on Sun_Jul_28_19:07:16_PDT_2019
 Cuda compilation tools, release 10.1, V10.1.243
 ```
 
-indicates that 
+indicates that
 
 ```
 python -m pip install --upgrade jax jaxlib==0.1.57+cuda101 --find-links https://storage.googleapis.com/jax-releases/jax_releases.html
@@ -68,15 +68,10 @@ python -m pip install --upgrade jax jaxlib==0.1.57+cuda101 --find-links https://
 
 is needed.
 
-## Testing
-
-It is worthwhile in another terminal watching the GPU performance with `nvidia-smi` while running tests
-
-```
-watch --interval 1 nvidia-smi
-```
 
 ### Temporary Note
+
+**JAX**
 
 If Nvidia CUDA Toolkit is installed the Ubuntu PPAs with
 
@@ -103,6 +98,8 @@ Or better symlink to `/usr/local/cuda`
 sudo ln -s /usr/lib/cuda /usr/local/cuda
 ```
 
+#### TensorFlow
+
 https://developer.nvidia.com/rdp/cudnn-download
 
 Download cuDNN v8.0.5 (November 9th, 2020), for CUDA 11.1
@@ -123,7 +120,7 @@ Procedure
 > $ tar -xzvf cudnn-x.x-linux-x64-v8.x.x.x.tgz
 > ```
 > or
-> 
+>
 > ```
 > $ tar -xzvf cudnn-x.x-linux-aarch64sbsa-v8.x.x.x.tgz
 > ```
@@ -132,7 +129,7 @@ Procedure
 > $ sudo cp cuda/include/cudnn*.h /usr/local/cuda/include
 > $ sudo cp cuda/lib64/libcudnn* /usr/local/cuda/lib64
 > ```
-> 
+>
 > $ sudo chmod a+r /usr/local/cuda/include/cudnn*.h /usr/local/cuda/lib64/libcudnn*
 
 To get libcudnn.so.7 whenhave .8 just
@@ -140,6 +137,14 @@ To get libcudnn.so.7 whenhave .8 just
 symlink libcudnn.so.8 to libcudnn.so.7
 ```
 sudo ln -s /usr/lib/x86_64-linux-gnu/libcudnn.so.8 /usr/lib/x86_64-linux-gnu/libcudnn.so.7
+```
+
+## Testing
+
+It is worthwhile in another terminal watching the GPU performance with `nvidia-smi` while running tests
+
+```
+watch --interval 1 nvidia-smi
 ```
 
 ## Acknowledgements
