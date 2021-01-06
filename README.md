@@ -2,6 +2,14 @@
 
 Simple tests for JAX, PyTorch, and TensorFlow to test if the installed NVIDIA drivers are being properly picked up.
 
+## Requirements
+
+These instructions assume working on [Ubuntu 20.04 LTS](https://releases.ubuntu.com/20.04/).
+
+- Computer with NVIDIA GPU installed.
+- Linux operating system (assumed to be an Ubuntu LTS) with root access.
+- Python 3.6+ installed  (recommended through [pyenv](https://github.com/pyenv/pyenv) for easy configuration).
+
 ## Setup
 
 ### Installing Python Libraries
@@ -13,8 +21,6 @@ python -m pip install -r requirements.txt
 ```
 
 ### Installing NVIDIA Drivers and CUDA Libraries
-
-These instructions assume working on Ubuntu 20.04 LTS.
 
 ### Ubuntu NVIDIA Drivers
 
