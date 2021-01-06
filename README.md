@@ -346,9 +346,35 @@ If everything is setup correctly then the resulting output should conclude with
 Test passed!
 ```
 
-To get libcudnn.so.7 whenhave .8 just
+#### Check TensorFlow Version Restrictions
 
-symlink libcudnn.so.8 to libcudnn.so.7
+TensorFlow does not really respect semvar as minor releases act essentially as major releases with breaking changes.
+This comes into play when considering the [tested build configurations for CUDA and cuDNN versions](https://www.tensorflow.org/install/source#linux).
+For example, looking at supported ranges for TensorFlow `v2.3.0` and `v2.4.0`
+
+| Version          | Python version | Compiler  | Build tools | cuDNN | CUDA |
+|------------------|----------------|-----------|-------------|-------|------|
+| tensorflow-2.4.0 | 3.6-3.8        | GCC 7.3.1 | Bazel 3.1.0 | 8.0   | 11.0 |
+| tensorflow-2.3.0 | 3.5-3.8        | GCC 7.3.1 | Bazel 3.1.0 | 7.6   | 10.1 |
+
+it is seen that for our example of
+
+```
+$ nvcc --version
+nvcc: NVIDIA (R) Cuda compiler driver
+Copyright (c) 2005-2019 NVIDIA Corporation
+Built on Sun_Jul_28_19:07:16_PDT_2019
+Cuda compilation tools, release 10.1, V10.1.243
+```
+
+only TensorFlow `v2.3.0` will be compatible with out installation.
+However, TensorFlow `v2.3.0` requires cuDNN `v7.X` (`libcudnn.so.7`) and we have cuDNN `v8.x` (`libcudnn.so.8`).
+The NVIDIA [cuDNN installation documentation notes](https://docs.nvidia.com/deeplearning/cudnn/install-guide/index.html#upgrade) that
+
+> Since version 8 can coexist with previous versions of cuDNN, if the user has an older version of cuDNN such as v6 or v7, installing version 8 will not automatically delete an older revision.
+
+While we could go and try to install cuDNN `v7.6` from the [cuDNN archives](https://developer.nvidia.com/rdp/cudnn-archive) it turns out that [TensorFlow is okay with](https://github.com/tensorflow/tensorflow/issues/20271#issuecomment-643296453) symlinking `libcudnn.so.8` to a target of `libcudnn.so.7`, so until this causes problems move forward with this approach
+
 ```
 sudo ln -s /usr/lib/x86_64-linux-gnu/libcudnn.so.8 /usr/lib/x86_64-linux-gnu/libcudnn.so.7
 ```
@@ -373,7 +399,7 @@ watch --interval 1 nvidia-smi
 ### Useful GitHub Issues
 
 - [JAX Issue 3984](https://github.com/google/jax/issues/3984): automatic detection for GPU pip install doesn't quite work on ubuntu 20.04
-- [TensorFlow Issue 20271](https://github.com/tensorflow/tensorflow/issues/20271#issuecomment-647113141): ImportError: libcudnn.so.7: cannot open shared object file: No such file or directory
+- [TensorFlow Issue 20271](https://github.com/tensorflow/tensorflow/issues/20271#issuecomment-643296453): ImportError: libcudnn.so.7: cannot open shared object file: No such file or directory
 
 ## Acknowledgements
 
