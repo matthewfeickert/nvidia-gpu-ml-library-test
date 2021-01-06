@@ -1,16 +1,34 @@
-# Nvidia GPU ML library test
+# NVIDIA GPU ML library test
 
-Simple tests for JAX, PyTorch, and TensorFlow to test if the installed Nvidia drivers are being properly picked up
+Simple tests for JAX, PyTorch, and TensorFlow to test if the installed NVIDIA drivers are being properly picked up.
 
 ## Setup
 
-After installing the proper Nvidia drivers for your system create a Python virtual environment and install the base libraires
+### Installing Python Libraries
+
+Create a Python virtual environment and install the base libraries
 
 ```
 python -m pip install -r requirements.txt
 ```
 
-From here the [GPU version of `jaxlib` will need to be installed](https://github.com/google/jax#pip-installation), and can be determined from the version of `jaxlib` that was installed from PyPI and the version of CUDA installed.
+### Installing NVIDIA Drivers and CUDA Libraries
+
+These instructions assume working on Ubuntu 20.04 LTS.
+
+### Ubuntu NVIDIA Drivers
+
+Now that the system NVIDIA drivers are installed the necessary requirements can be stepped through or the different machine learning backends in order (from easiest to hardest).
+
+### PyTorch
+
+PyTorch makes things very easy by [packaging all of the necessary CUDA libraries with its binary distirbutions](https://discuss.pytorch.org/t/newbie-question-what-are-the-prerequisites-for-running-pytorch-with-gpu/698/3) (which is why they are so huge).
+So by `pip` installing the `torch` wheel all necessary libraries are installed.
+
+
+### JAX
+
+The [GPU version of `jaxlib` will need to be installed](https://github.com/google/jax#pip-installation), and can be determined from the version of `jaxlib` that was installed from PyPI and the version of CUDA installed.
 The GPU release can be installed from Google with
 
 ```
@@ -117,3 +135,7 @@ symlink libcudnn.so.8 to libcudnn.so.7
 ```
 sudo ln -s /usr/lib/x86_64-linux-gnu/libcudnn.so.8 /usr/lib/x86_64-linux-gnu/libcudnn.so.7
 ```
+
+## Acknowledgements
+
+Thanks to Giordon Stark who greatly helped me scafold the right approach to this setup, as well as for his help doing system setup comparisons.
