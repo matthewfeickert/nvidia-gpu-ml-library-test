@@ -298,6 +298,27 @@ If everything is setup correctly then the resulting output should conclude with
 Test passed!
 ```
 
+#### Adding CUDA and cuDNN to PATHs
+
+The installed libraries should also be known added to `PATH` and `LD_LIBARY_PATH`, so add the following to your `~/.profile` to be loaded at system login
+
+```
+# Add CUDA Toolkit 10.1 to PATH
+# /usr/local/cuda-10.1 should be a symlink to /usr/lib/cuda
+if [ -d "/usr/local/cuda-10.1/bin" ]; then
+    PATH="/usr/local/cuda-10.1/bin:${PATH}"; export PATH;
+elif [ -d "/usr/lib/cuda/bin" ]; then
+    PATH="/usr/lib/cuda/bin:${PATH}"; export PATH;
+fi
+# Add cuDNN to LD_LIBRARY_PATH
+# /usr/local/cuda should be a symlink to /usr/lib/cuda
+if [ -d "/usr/local/cuda/lib64" ]; then
+    LD_LIBRARY_PATH="/usr/local/cuda/lib64:${LD_LIBRARY_PATH}"; export LD_LIBRARY_PATH;
+elif [ -d "/usr/lib/cuda/lib64" ]; then
+    LD_LIBRARY_PATH="/usr/lib/cuda/lib64:${LD_LIBRARY_PATH}"; export LD_LIBRARY_PATH;
+fi
+```
+
 #### Check TensorFlow Version Restrictions
 
 TensorFlow does not really respect semvar as minor releases act essentially as major releases with breaking changes.
