@@ -194,37 +194,63 @@ If you have questions on this step refer to the [relevant section in the JAX REA
 
 #### TensorFlow
 
-https://developer.nvidia.com/rdp/cudnn-download
+**WARNING:** This section will be out of date fast, so you'll have to adopt it for your particular circumastnaces.
 
-Download cuDNN v8.0.5 (November 9th, 2020), for CUDA 11.1
+TensorFlow requires the [NVIDIA cuDNN](https://developer.nvidia.com/CUDNN) closed source libraries, which are a pain to get and have quite bad documentation.
+To download the libraries you will need to make an account with NVIDIA and register as a developer, which is also a bad experience.
+Once you've done that go to the [cuDNN download page](https://developer.nvidia.com/rdp/cudnn-download), agreee to the Software License Agreement, and the select the version of cuDNN that matches the version of CUDA your **operating system** has (**the version from `nvidia-smi`** which is not necesarilly the same as the version from `nvcc --version`)
 
-Get all these
+**Example:**
+
+For the choices of
+
+- cuDNN v8.0.5 for CUDA 11.1
+- cuDNN v8.0.5 for CUDA 11.0
+- cuDNN v8.0.5 for CUDA 10.2
+- cuDNN v8.0.5 for CUDA 10.1
+
+```
+$ nvidia-smi | grep "CUDA Version"
+| NVIDIA-SMI 455.45.01    Driver Version: 455.45.01    CUDA Version: 11.1
+```
+
+would indicate that cuDNN v8.0.5 for CUDA 11.1 is the recommended version.
+(This is verified by noting that when clicked on the entry for cuDNN v8.0.5 for CUDA 11.1 lists support for Ubuntu 20.04, but the entry for cuDNN v8.0.5 for CUDA 10.1 lists support only for Ubuntu 18.04.)
+
+Click on the cuDNN release you want to download to see the available libraries for supportes sytem architectures.
+As these instructions are using Ubuntu, download the tarballs and Debian binaries for cuDNN libary and the cuDNN runtime library, developer library, and code samples.
+
+**Example:**
 
 - cuDNN Library for Linux (x86_64)
 - cuDNN Runtime Library for Ubuntu20.04 x86_64 (Deb)
 - cuDNN Developer Library for Ubuntu20.04 x86_64 (Deb)
 - cuDNN Code Samples and User Guide for Ubuntu20.04 x86_64 (Deb)
 
+Once all the libraries are downloaded locally refer to the [directions for installing on Linux](https://docs.nvidia.com/deeplearning/cudnn/install-guide/index.html#installlinux) in the [cuDNN installation guide](http://docs.nvidia.com/deeplearning/sdk/cudnn-install/index.html).
+The documentation refers to a CUDA directory path (which they generically call `/usr/local/cuda`) and a download path for all of the cuDNN libraries (referred to as `<cudnnpath>`).
+For the CUDA directory path we can use our existing symlink of `/usr/local/cuda-10.1` but if it is easier you can create a new symlink of `/usr/local/cuda` pointing to `/usr/lib/cuda`.
+
+#### Install cuDNN Library
+
+1. Navigate to your <cudnnpath> directory containing the cuDNN tar file (exmple: `cudnn-11.1-linux-x64-v8.0.5.39.tgz`).
+2. Unzip the cuDNN libary tarball
+
+```
+$ tar -xzvf cudnn-*-linux-x64-v*.tgz
+```
+
+
 install .debs and then c.f. installation guide http://docs.nvidia.com/deeplearning/sdk/cudnn-install/index.html which mentions 2.3.1. Tar File Installation
 
-Procedure
-> 1. Navigate to your <cudnnpath> directory containing the cuDNN tar file.
-> 2. Unzip the cuDNN package.
-> ```
-> $ tar -xzvf cudnn-x.x-linux-x64-v8.x.x.x.tgz
-> ```
-> or
->
-> ```
-> $ tar -xzvf cudnn-x.x-linux-aarch64sbsa-v8.x.x.x.tgz
-> ```
-> 3 . Copy the following files into the CUDA Toolkit directory.
-> ```
-> $ sudo cp cuda/include/cudnn*.h /usr/local/cuda/include
-> $ sudo cp cuda/lib64/libcudnn* /usr/local/cuda/lib64
-> ```
->
-> $ sudo chmod a+r /usr/local/cuda/include/cudnn*.h /usr/local/cuda/lib64/libcudnn*
+3. Copy the library files into the CUDA Toolkit directory.
+```
+$ sudo cp cuda/include/cudnn*.h /usr/local/cuda-10.1/include
+$ sudo cp cuda/lib64/libcudnn* /usr/local/cuda-10.1/lib64
+```
+```
+$ sudo chmod a+r /usr/local/cuda/include/cudnn*.h /usr/local/cuda/lib64/libcudnn*
+```
 
 To get libcudnn.so.7 whenhave .8 just
 
