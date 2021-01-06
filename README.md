@@ -72,3 +72,48 @@ so for example
 ```
 XLA_FLAGS=--xla_gpu_cuda_data_dir=/usr/lib/cuda/ python jax_MNIST.py
 ```
+
+Or better symlink to `/usr/local/cuda`
+
+```
+sudo ln -s /usr/lib/cuda /usr/local/cuda
+```
+
+https://developer.nvidia.com/rdp/cudnn-download
+
+Download cuDNN v8.0.5 (November 9th, 2020), for CUDA 11.1
+
+Get all these
+
+- cuDNN Library for Linux (x86_64)
+- cuDNN Runtime Library for Ubuntu20.04 x86_64 (Deb)
+- cuDNN Developer Library for Ubuntu20.04 x86_64 (Deb)
+- cuDNN Code Samples and User Guide for Ubuntu20.04 x86_64 (Deb)
+
+install .debs and then c.f. installation guide http://docs.nvidia.com/deeplearning/sdk/cudnn-install/index.html which mentions 2.3.1. Tar File Installation
+
+Procedure
+> 1. Navigate to your <cudnnpath> directory containing the cuDNN tar file.
+> 2. Unzip the cuDNN package.
+> ```
+> $ tar -xzvf cudnn-x.x-linux-x64-v8.x.x.x.tgz
+> ```
+> or
+> 
+> ```
+> $ tar -xzvf cudnn-x.x-linux-aarch64sbsa-v8.x.x.x.tgz
+> ```
+> 3 . Copy the following files into the CUDA Toolkit directory.
+> ```
+> $ sudo cp cuda/include/cudnn*.h /usr/local/cuda/include
+> $ sudo cp cuda/lib64/libcudnn* /usr/local/cuda/lib64
+> ```
+> 
+> $ sudo chmod a+r /usr/local/cuda/include/cudnn*.h /usr/local/cuda/lib64/libcudnn*
+
+To get libcudnn.so.7 whenhave .8 just
+
+symlink libcudnn.so.8 to libcudnn.so.7
+```
+sudo ln -s /usr/lib/x86_64-linux-gnu/libcudnn.so.8 /usr/lib/x86_64-linux-gnu/libcudnn.so.7
+```
