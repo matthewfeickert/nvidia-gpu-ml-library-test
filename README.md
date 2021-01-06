@@ -149,4 +149,4 @@ watch --interval 1 nvidia-smi
 
 ## Acknowledgements
 
-Thanks to Giordon Stark who greatly helped me scafold the right approach to this setup, as well as for his help doing system setup comparisons.
+Thanks to [Giordon Stark](https://github.com/kratsg/) who greatly helped me scafold the right approach to this setup, as well as for his help doing system setup comparisons.
