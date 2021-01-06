@@ -292,6 +292,12 @@ make clean && make
 ./mnistCUDNN
 ```
 
+If everything is setup correctly then the resulting output should conclude with
+
+```
+Test passed!
+```
+
 To get libcudnn.so.7 whenhave .8 just
 
 symlink libcudnn.so.8 to libcudnn.so.7
