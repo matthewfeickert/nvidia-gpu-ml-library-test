@@ -10,5 +10,6 @@ if __name__ == "__main__":
         print(f"PyTorch build CUDA version: {torch.version.cuda}")
         print(f"PyTorch build cuDNN version: {torch.backends.cudnn.version()}")
         print(f"PyTorch build NCCL version: {torch.cuda.nccl.version()}")
+
         print(f"\nActive GPU index: {cuda.current_device()}")
         print(f"Active GPU name: {cuda.get_device_name(cuda.current_device())}")
