@@ -6,6 +6,7 @@ if __name__ == "__main__":
     xla_backend_type = xla_bridge.get_backend().platform  # cpu, gpu, tpu
     print(f"XLA backend type: {xla_backend_type}")
     if xla_backend_type == "gpu":
-        for device in xla_backend.devices():
-            print(f"Active GPU index: {device.id}")
-            print(f"Active GPU name: {device.device_kind}")
+        for idx, device in enumerate(xla_backend.devices()):
+            gpu_type = "Active GPU" if idx == 0 else "GPU"
+            print(f"{gpu_type} index: {device.id}")
+            print(f"{gpu_type} name: {device.device_kind}")
