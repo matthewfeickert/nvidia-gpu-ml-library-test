@@ -2,6 +2,9 @@
 
 Simple tests for JAX, PyTorch, and TensorFlow to test if the installed NVIDIA drivers are being properly picked up.
 
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/matthewfeickert/nvidia-gpu-ml-library-test/main.svg)](https://results.pre-commit.ci/latest/github/matthewfeickert/nvidia-gpu-ml-library-test/main)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
 ## Requirements
 
 These instructions assume working on [Ubuntu 20.04 LTS](https://releases.ubuntu.com/20.04/).
@@ -16,7 +19,14 @@ This setup has been tested on the following systems:
 
 * Lenovo ThinkPad X1 Extreme laptop
    - OS: Ubuntu 20.04
+   - CPU: Intel Core i7-9750H @ 12x 4.5GHz
    - GPU: GeForce GTX 1650 with Max-Q Design
+   - NVIDIA Driver: 455
+   - Python: 3.8.6 built from source
+* Custom built dekstop
+   - OS: Ubuntu 20.04
+   - CPU: AMD Ryzen 9 3900X 12-Core @ 24x 3.906GHz
+   - GPU: GeForce RTX 2080 Ti
    - NVIDIA Driver: 455
    - Python: 3.8.6 built from source
 
