@@ -2,6 +2,9 @@
 
 Simple tests for JAX, PyTorch, and TensorFlow to test if the installed NVIDIA drivers are being properly picked up.
 
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/matthewfeickert/nvidia-gpu-ml-library-test/main.svg)](https://results.pre-commit.ci/latest/github/matthewfeickert/nvidia-gpu-ml-library-test/main)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
 ## Requirements
 
 These instructions assume working on [Ubuntu 20.04 LTS](https://releases.ubuntu.com/20.04/).
