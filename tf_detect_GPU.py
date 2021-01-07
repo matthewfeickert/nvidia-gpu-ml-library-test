@@ -12,4 +12,5 @@ if __name__ == "__main__":
 
     for device, details in zip(gpu_devices, gpu_details):
         print(f"\nGPU: {device.name}")
+        print(f"GPU index: {device.name.split(':')[-1]}")
         print(f"GPU name: {details['device_name']}")
