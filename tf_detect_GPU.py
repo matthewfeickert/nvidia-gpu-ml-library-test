@@ -6,8 +6,7 @@ if __name__ == "__main__":
     # Getting device details now to avoid info stream later during prints
     gpu_details = [get_device_details(gpu) for gpu in gpu_devices]
 
-    print(f"\nNumber of GPUs found on system: {len(gpu_devices)}")
-    print(f"TensorFlow build supports GPU: {tf.test.is_built_with_gpu_support()}")
+    print(f"\nTensorFlow build supports GPU: {tf.test.is_built_with_gpu_support()}")
     print(f"TensorFlow build supports XLA: {tf.test.is_built_with_xla()}")
     is_built_with_cuda = tf.test.is_built_with_cuda()
     print(f"TensorFlow build supports CUDA: {is_built_with_cuda}")
@@ -17,6 +16,7 @@ if __name__ == "__main__":
         print(f"TensorFlow build CUDA version: {build_info['cuda_version']}")
         print(f"TensorFlow build cuDNN version: {build_info['cudnn_version']}")
 
+    print(f"\nNumber of GPUs found on system: {len(gpu_devices)}")
     for device, details in zip(gpu_devices, gpu_details):
         print(f"\nGPU: {device.name}")
         print(f"GPU index: {device.name.split(':')[-1]}")
