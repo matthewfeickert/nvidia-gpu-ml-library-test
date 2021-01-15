@@ -62,6 +62,21 @@ nvidia-smi
 
 from the command line the displayed driver version should match the one you installed.
 
+**N.B.:** To check all the GPUs that are currently visible to NVIDIA you can use
+
+```
+nvidia-smi --list-gpus
+```
+
+See the output of `nvidia-smi --help` for more details.
+
+**Example:**
+
+```
+$ nvidia-smi --list-gpus
+GPU 0: GeForce GTX 1650 with Max-Q Design (UUID: GPU-7061202f-798a-193c-6ff4-a6131eef00d3)
+```
+
 ##### Command Line
 
 Alternatively, if you are running headless or over a remote connection you can determine and install the correct driver from the command line.
