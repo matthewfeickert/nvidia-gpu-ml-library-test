@@ -56,7 +56,7 @@ Select the recommended NVIDIA driver from the list (proprietary, tested) and the
 After the driver has finished installing, restart the computer to verify the driver has been installed successfully.
 If you run
 
-```
+```console
 nvidia-smi
 ```
 
@@ -64,7 +64,7 @@ from the command line the displayed driver version should match the one you inst
 
 **N.B.:** To check all the GPUs that are currently visible to NVIDIA you can use
 
-```
+```console
 nvidia-smi --list-gpus
 ```
 
@@ -72,7 +72,7 @@ See the output of `nvidia-smi --help` for more details.
 
 **Example:**
 
-```
+```console
 $ nvidia-smi --list-gpus
 GPU 0: GeForce GTX 1650 with Max-Q Design (UUID: GPU-7061202f-798a-193c-6ff4-a6131eef00d3)
 ```
@@ -82,7 +82,7 @@ GPU 0: GeForce GTX 1650 with Max-Q Design (UUID: GPU-7061202f-798a-193c-6ff4-a61
 Alternatively, if you are running headless or over a remote connection you can determine and install the correct driver from the command line.
 From the command line run
 
-```
+```console
 ubuntu-drivers devices
 ```
 
@@ -90,7 +90,7 @@ to get a list of all devices on the machine that need drivers and the recommende
 
 **Example:**
 
-```
+```console
 $ ubuntu-drivers devices
 == /sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0 ==
 modalias : pci:v000010DEd00001F91sv000017AAsd0000229Fbc03sc00i00
@@ -108,13 +108,13 @@ You can now either install the supported driver you want directly through `apt`
 
 **Example:**
 
-```
+```console
 sudo apt-get install nvidia-driver-470
 ```
 
 or you can let `ubnutu-driver` install the recommended driver for you automatically
 
-```
+```console
 sudo ubuntu-drivers autoinstall
 ```
 
@@ -124,14 +124,14 @@ After installing the NVIDIA driver, the [NVIDIA CUDA Toolkit](https://developer.
 This needs to be done everytime you update the NVIDIA driver.
 This can be done manually by following the instructions on the NVIDIA website, but it can also be done automatically through `apt` installing the [Ubuntu package `nvidia-cuda-toolkit`](https://packages.ubuntu.com/search?keywords=nvidia-cuda-toolkit).
 
-```
+```console
 sudo apt-get update -y
 sudo apt-get install -y nvidia-cuda-toolkit
 ```
 
 **Example:**
 
-```
+```console
 $ apt show nvidia-cuda-toolkit | head -n 5
 Package: nvidia-cuda-toolkit
 Version: 10.1.243-3
@@ -158,19 +158,19 @@ So by `pip` installing the `torch` wheel all necessary libraries are installed.
 The [GPU version of `jaxlib` will need to be installed](https://github.com/google/jax#pip-installation), and can be determined from the version of `jaxlib` that was installed from PyPI and the version of CUDA installed.
 The GPU release can be installed from Google with
 
-```
+```console
 python -m pip install --upgrade jax jaxlib==<jaxlib VERSION GOES HERE>+cuda<CUDA VERSION GOES HERE> --find-links https://storage.googleapis.com/jax-releases/jax_releases.html
 ```
 
 The version of `jaxlib` installed can be found from `pip` and the version of CUDA installed can be found from
 
-```
+```console
 nvcc --version
 ```
 
 **Example:**
 
-```
+```console
 $ pip list | grep jax
 jax                      0.2.18
 jaxlib                   0.1.69
@@ -183,7 +183,7 @@ Cuda compilation tools, release 10.1, V10.1.243
 
 indicates that
 
-```
+```console
 python -m pip install --upgrade jax jaxlib==0.1.69+cuda101 --find-links https://storage.googleapis.com/jax-releases/jax_releases.html
 ```
 
@@ -193,25 +193,25 @@ JAX expects to find the CUDA directory structure (what is will assign as the env
 If NVIDIA CUDA Toolkit was installed through the `nvidia-cuda-toolkit` Ubuntu package CUDA will instead be found under `/usr/lib/cuda`.
 To make CUDA findable to JAX a symlink can be created
 
-```
+```console
 sudo ln -s /usr/lib/cuda /usr/local/cuda-x.x
 ```
 
 **Example:**
 
-```
+```console
 sudo ln -s /usr/lib/cuda /usr/local/cuda-10.1
 ```
 
 To test the location of the installed CUDA release you can set the following environment variable before importing JAX
 
-```
+```console
 XLA_FLAGS=--xla_gpu_cuda_data_dir=/path/to/cuda
 ```
 
 **Example:**
 
-```
+```console
 XLA_FLAGS=--xla_gpu_cuda_data_dir=/usr/lib/cuda/ python jax_MNIST.py
 ```
 
@@ -232,7 +232,7 @@ For the choices of
 - cuDNN v8.2.2 for CUDA 11.4
 - cuDNN v8.2.2 for CUDA 10.2
 
-```
+```console
 $ nvidia-smi | grep "CUDA Version"
 | NVIDIA-SMI 470.57.02    Driver Version: 470.57.02    CUDA Version: 11.4     |
 ```
@@ -254,36 +254,36 @@ Once all the libraries are downloaded locally refer to the [directions for insta
 The documentation refers to a CUDA directory path (which they generically call `/usr/local/cuda`) and a download path for all of the cuDNN libraries (referred to as `<cudnnpath>`).
 For the CUDA directory path we _could_ use our existing symlink of `/usr/local/cuda-10.1`, but the cuDNN examples all assume the path is `/usr/local/cuda` so it is easier to make a new symlink of `/usr/local/cuda` pointing to `/usr/lib/cuda`.
 
-```
+```console
 sudo ln -s /usr/lib/cuda /usr/local/cuda
 ```
 
 The examples are also going to assume that `nvcc` is at `/usr/local/cuda/bin/nvcc` and `cuda.h` is at `/usr/local/cuda/include/cuda.h`, so make additional symlinks of those paths pointing to `/usr/bin/nvcc` and `/usr/include/cuda.h`
 
-```
+```console
 sudo ln -s /usr/bin/nvcc /usr/local/cuda/bin/nvcc
 sudo ln -s /usr/include/cuda.h /usr/local/cuda/include/cuda.h
 ```
 
 #### Install cuDNN Library
 
-1. Navigate to your `<cudnnpath>` directory containing the cuDNN tar file (exmple: `cudnn-11.1-linux-x64-v8.0.5.39.tgz`)
+1. Navigate to your `<cudnnpath>` directory containing the cuDNN tar file (exmple: `cudnn-11.4-linux-x64-v8.2.2.26.tgz`)
 2. Untar the cuDNN libary tarball (the untarred directory name is `cuda`)
 
-```
+```console
 tar -xzvf cudnn-*-linux-x64-v*.tgz
 ```
 
 3. Copy the library files into the CUDA Toolkit directory
 
-```
+```console
 sudo cp cuda/include/cudnn*.h /usr/local/cuda/include
 sudo cp cuda/lib64/libcudnn* /usr/local/cuda/lib64
 ```
 
 4. Set the permissions for the files to be universally readable
 
-```
+```console
 sudo chmod a+r /usr/local/cuda/include/cudnn*.h /usr/local/cuda/lib64/libcudnn*
 ```
 
@@ -294,7 +294,7 @@ This can be done with `apt install` from your `<cudnnpath>`.
 
 **Example:**
 
-```
+```console
 sudo apt install ./libcudnn8_8.0.5.39-1+cuda11.1_amd64.deb
 sudo apt install ./libcudnn8-dev_8.0.5.39-1+cuda11.1_amd64.deb
 sudo apt install ./libcudnn8-samples_8.0.5.39-1+cuda11.1_amd64.deb
@@ -304,13 +304,13 @@ sudo apt install ./libcudnn8-samples_8.0.5.39-1+cuda11.1_amd64.deb
 
 Copy the cuDNN samples to a writable path
 
-```
+```console
 cp -r /usr/src/cudnn_samples_v8/ $PWD
 ```
 
 then navigate to the `mnistCUDNN` sample directory and compile and run the sample
 
-```
+```console
 cd cudnn_samples_v8/mnistCUDNN
 make clean && make
 ./mnistCUDNN
@@ -326,7 +326,7 @@ Test passed!
 
 The installed libraries should also be known added to `PATH` and `LD_LIBARY_PATH`, so add the following to your `~/.profile` to be loaded at system login
 
-```
+```bash
 # Add CUDA Toolkit 10.1 to PATH
 # /usr/local/cuda-10.1 should be a symlink to /usr/lib/cuda
 if [ -d "/usr/local/cuda-10.1/bin" ]; then
@@ -356,7 +356,7 @@ For example, looking at supported ranges for TensorFlow `v2.3.0` and `v2.4.0`
 
 it is seen that for our example of
 
-```
+```console
 $ nvcc --version
 nvcc: NVIDIA (R) Cuda compiler driver
 Copyright (c) 2005-2019 NVIDIA Corporation
@@ -372,13 +372,13 @@ The NVIDIA [cuDNN installation documentation notes](https://docs.nvidia.com/deep
 
 While we could go and try to install cuDNN `v7.6` from the [cuDNN archives](https://developer.nvidia.com/rdp/cudnn-archive) it turns out that [TensorFlow is okay with](https://github.com/tensorflow/tensorflow/issues/20271#issuecomment-643296453) symlinking `libcudnn.so.8` to a target of `libcudnn.so.7`, so until this causes problems move forward with this approach
 
-```
+```console
 sudo ln -s /usr/lib/cuda/lib64/libcudnn.so.8 /usr/local/cuda/lib64/libcudnn.so.7
 ```
 
 You should now have a directory structure for `usr/local/cuda` that looks something like the following
 
-```
+```console
 $ tree /usr/local/cuda
 /usr/local/cuda
 ├── bin
@@ -441,7 +441,7 @@ For all of the ML libraries you can run a simple MNIST test by running `x_MNIST.
 
 It is worthwhile in another terminal to watch the GPU performance with `nvidia-smi` while running tests
 
-```
+```console
 watch --interval 0.5 nvidia-smi
 ```
 
