@@ -184,7 +184,7 @@ Cuda compilation tools, release 10.1, V10.1.243
 indicates that
 
 ```
-python -m pip install --upgrade jax jaxlib==0.1.57+cuda101 --find-links https://storage.googleapis.com/jax-releases/jax_releases.html
+python -m pip install --upgrade jax jaxlib==0.1.69+cuda101 --find-links https://storage.googleapis.com/jax-releases/jax_releases.html
 ```
 
 is needed.
@@ -229,18 +229,16 @@ Once you've done that go to the [cuDNN download page](https://developer.nvidia.c
 
 For the choices of
 
-- cuDNN v8.0.5 for CUDA 11.1
-- cuDNN v8.0.5 for CUDA 11.0
-- cuDNN v8.0.5 for CUDA 10.2
-- cuDNN v8.0.5 for CUDA 10.1
+- cuDNN v8.2.2 for CUDA 11.4
+- cuDNN v8.2.2 for CUDA 10.2
 
 ```
 $ nvidia-smi | grep "CUDA Version"
-| NVIDIA-SMI 455.45.01    Driver Version: 455.45.01    CUDA Version: 11.1
+| NVIDIA-SMI 470.57.02    Driver Version: 470.57.02    CUDA Version: 11.4     |
 ```
 
-would indicate that cuDNN v8.0.5 for CUDA 11.1 is the recommended version.
-(This is verified by noting that when clicked on the entry for cuDNN v8.0.5 for CUDA 11.1 lists support for Ubuntu 20.04, but the entry for cuDNN v8.0.5 for CUDA 10.1 lists support only for Ubuntu 18.04.)
+would indicate that cuDNN v8.2.2 for CUDA 11.4 is the recommended version.
+(This is verified by noting that when clicked on the entry for cuDNN v8.2.2 for CUDA 11.4 lists support for Ubuntu 20.04, but the entry for cuDNN v8.2.2 for CUDA 10.2 lists support only for Ubuntu 18.04.)
 
 Click on the cuDNN release you want to download to see the available libraries for supports system architectures.
 As these instructions are using Ubuntu, download the tarballs and Debian binaries for cuDNN library and the cuDNN runtime library, developer library, and code samples.
