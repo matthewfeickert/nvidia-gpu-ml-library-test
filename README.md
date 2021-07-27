@@ -22,7 +22,7 @@ This setup has been tested on the following systems:
    - CPU: Intel Core i7-9750H @ 12x 4.5GHz
    - GPU: GeForce GTX 1650 with Max-Q Design
    - NVIDIA Driver: 470
-   - Python: 3.9.6 built from source
+   - Python: 3.8.11 built from source
 * Custom built dekstop
    - OS: Ubuntu 20.04
    - CPU: AMD Ryzen 9 3900X 12-Core @ 24x 3.906GHz
