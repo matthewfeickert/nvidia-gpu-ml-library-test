@@ -347,10 +347,11 @@ fi
 
 TensorFlow does not really respect semvar as minor releases act essentially as major releases with breaking changes.
 This comes into play when considering the [tested build configurations for CUDA and cuDNN versions](https://www.tensorflow.org/install/source#linux).
-For example, looking at supported ranges for TensorFlow `v2.3.0` and `v2.4.0`
+For example, looking at supported ranges for TensorFlow `v2.3.0` through `v2.5.0`
 
 | Version          | Python version | Compiler  | Build tools | cuDNN | CUDA |
 |------------------|----------------|-----------|-------------|-------|------|
+| tensorflow-2.5.0 | 3.6-3.9        | GCC 7.3.1 | Bazel 3.7.2 | 8.1   | 11.2 |
 | tensorflow-2.4.0 | 3.6-3.8        | GCC 7.3.1 | Bazel 3.1.0 | 8.0   | 11.0 |
 | tensorflow-2.3.0 | 3.5-3.8        | GCC 7.3.1 | Bazel 3.1.0 | 7.6   | 10.1 |
 
@@ -386,43 +387,57 @@ $ tree /usr/local/cuda
 ├── include
 │   ├── cuda.h -> /usr/include/cuda.h
 │   ├── cudnn_adv_infer.h
+│   ├── cudnn_adv_infer_v8.h
 │   ├── cudnn_adv_train.h
+│   ├── cudnn_adv_train_v8.h
 │   ├── cudnn_backend.h
+│   ├── cudnn_backend_v8.h
 │   ├── cudnn_cnn_infer.h
+│   ├── cudnn_cnn_infer_v8.h
 │   ├── cudnn_cnn_train.h
+│   ├── cudnn_cnn_train_v8.h
 │   ├── cudnn.h
 │   ├── cudnn_ops_infer.h
+│   ├── cudnn_ops_infer_v8.h
 │   ├── cudnn_ops_train.h
-│   └── cudnn_version.h
+│   ├── cudnn_ops_train_v8.h
+│   ├── cudnn_v8.h
+│   ├── cudnn_version.h
+│   └── cudnn_version_v8.h
 ├── lib64
 │   ├── libcudnn_adv_infer.so
 │   ├── libcudnn_adv_infer.so.8
-│   ├── libcudnn_adv_infer.so.8.0.5
+│   ├── libcudnn_adv_infer.so.8.2.2
 │   ├── libcudnn_adv_train.so
 │   ├── libcudnn_adv_train.so.8
-│   ├── libcudnn_adv_train.so.8.0.5
+│   ├── libcudnn_adv_train.so.8.2.2
 │   ├── libcudnn_cnn_infer.so
 │   ├── libcudnn_cnn_infer.so.8
-│   ├── libcudnn_cnn_infer.so.8.0.5
+│   ├── libcudnn_cnn_infer.so.8.2.2
+│   ├── libcudnn_cnn_infer_static.a
+│   ├── libcudnn_cnn_infer_static_v8.a
 │   ├── libcudnn_cnn_train.so
 │   ├── libcudnn_cnn_train.so.8
-│   ├── libcudnn_cnn_train.so.8.0.5
+│   ├── libcudnn_cnn_train.so.8.2.2
+│   ├── libcudnn_cnn_train_static.a
+│   ├── libcudnn_cnn_train_static_v8.a
 │   ├── libcudnn_ops_infer.so
 │   ├── libcudnn_ops_infer.so.8
-│   ├── libcudnn_ops_infer.so.8.0.5
+│   ├── libcudnn_ops_infer.so.8.2.2
 │   ├── libcudnn_ops_train.so
 │   ├── libcudnn_ops_train.so.8
-│   ├── libcudnn_ops_train.so.8.0.5
+│   ├── libcudnn_ops_train.so.8.2.2
 │   ├── libcudnn.so
 │   ├── libcudnn.so.7 -> /usr/lib/cuda/lib64/libcudnn.so.8
 │   ├── libcudnn.so.8
-│   ├── libcudnn.so.8.0.5
-│   └── libcudnn_static.a
+│   ├── libcudnn.so.8.2.2
+│   ├── libcudnn_static.a
+│   └── libcudnn_static_v8.a
 ├── nvvm
 │   └── libdevice -> ../../nvidia-cuda-toolkit/libdevice
 └── version.txt
 
-5 directories, 35 files
+5 directories, 49 files
 ```
 
 With this final set of libraries installed restart your computer.
