@@ -295,9 +295,9 @@ This can be done with `apt install` from your `<cudnnpath>`.
 **Example:**
 
 ```console
-sudo apt install ./libcudnn8_8.0.5.39-1+cuda11.1_amd64.deb
-sudo apt install ./libcudnn8-dev_8.0.5.39-1+cuda11.1_amd64.deb
-sudo apt install ./libcudnn8-samples_8.0.5.39-1+cuda11.1_amd64.deb
+sudo apt install ./libcudnn8_8.2.2.26-1+cuda11.4_amd64.deb
+sudo apt install ./libcudnn8-dev_8.2.2.26-1+cuda11.4_amd64.deb
+sudo apt install ./libcudnn8-samples_8.2.2.26-1+cuda11.4_amd64.deb
 ```
 
 #### Test cuDNN Installation
