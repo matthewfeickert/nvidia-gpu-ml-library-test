@@ -121,6 +121,7 @@ sudo ubuntu-drivers autoinstall
 #### NVIDIA CUDA Toolkit
 
 After installing the NVIDIA driver, the [NVIDIA CUDA Toolkit](https://developer.nvidia.com/cuda-toolkit) also needs to be installed.
+This needs to be done everytime you update the NVIDIA driver.
 This can be done manually by following the instructions on the NVIDIA website, but it can also be done automatically through `apt` installing the [Ubuntu package `nvidia-cuda-toolkit`](https://packages.ubuntu.com/search?keywords=nvidia-cuda-toolkit).
 
 ```
@@ -171,8 +172,8 @@ nvcc --version
 
 ```
 $ pip list | grep jax
-jax                    0.2.7
-jaxlib                 0.1.57
+jax                      0.2.18
+jaxlib                   0.1.69
 $ nvcc --version
 nvcc: NVIDIA (R) Cuda compiler driver
 Copyright (c) 2005-2019 NVIDIA Corporation
