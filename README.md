@@ -21,8 +21,8 @@ This setup has been tested on the following systems:
    - OS: Ubuntu 20.04
    - CPU: Intel Core i7-9750H @ 12x 4.5GHz
    - GPU: GeForce GTX 1650 with Max-Q Design
-   - NVIDIA Driver: 455
-   - Python: 3.8.6 built from source
+   - NVIDIA Driver: 470
+   - Python: 3.9.6 built from source
 * Custom built dekstop
    - OS: Ubuntu 20.04
    - CPU: AMD Ryzen 9 3900X 12-Core @ 24x 3.906GHz
@@ -96,11 +96,11 @@ $ ubuntu-drivers devices
 modalias : pci:v000010DEd00001F91sv000017AAsd0000229Fbc03sc00i00
 vendor   : NVIDIA Corporation
 model    : TU117M [GeForce GTX 1650 Mobile / Max-Q]
-driver   : nvidia-driver-450 - distro non-free
+driver   : nvidia-driver-460 - distro non-free
+driver   : nvidia-driver-460-server - distro non-free
 driver   : nvidia-driver-450-server - distro non-free
 driver   : nvidia-driver-418-server - distro non-free
-driver   : nvidia-driver-455 - distro non-free recommended
-driver   : nvidia-driver-440-server - distro non-free
+driver   : nvidia-driver-470 - distro non-free recommended
 driver   : xserver-xorg-video-nouveau - distro free builtin
 ```
 
@@ -109,7 +109,7 @@ You can now either install the supported driver you want directly through `apt`
 **Example:**
 
 ```
-sudo apt-get install nvidia-driver-455
+sudo apt-get install nvidia-driver-470
 ```
 
 or you can let `ubnutu-driver` install the recommended driver for you automatically
