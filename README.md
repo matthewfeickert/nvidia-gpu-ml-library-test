@@ -36,7 +36,7 @@ This setup has been tested on the following systems:
 
 Create a Python virtual environment and install the base libraries
 
-```
+```console
 python -m pip install -r requirements.txt
 ```
 
