@@ -28,9 +28,9 @@ import numpy.random as npr
 
 import jax.numpy as jnp
 from jax import jit, grad, random
-from jax.experimental import optimizers
-from jax.experimental import stax
-from jax.experimental.stax import Dense, Relu, LogSoftmax
+from jax.example_libraries import optimizers
+from jax.example_libraries import stax
+from jax.example_libraries.stax import Dense, Relu, LogSoftmax
 
 # from examples import datasets
 import jax_example_datasets as datasets
