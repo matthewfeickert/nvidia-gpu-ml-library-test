@@ -5,7 +5,7 @@ if __name__ == "__main__":
     xla_backend_type = xla_bridge.get_backend().platform  # cpu, gpu, tpu
     print(f"XLA backend type: {xla_backend_type}")
 
-    gpu_count = xla_bridge.device_count() if xla_backend_type == "gpu" else 0
+    gpu_count = xla_backend.device_count() if xla_backend_type == "gpu" else 0
     print(f"\nNumber of GPUs found on system: {gpu_count}")
     if xla_backend_type == "gpu":
         for idx, device in enumerate(xla_backend.devices()):
