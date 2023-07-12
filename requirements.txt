@@ -2,5 +2,5 @@ torch
 torchvision
 tensorflow~=2.3.0 # CUDA v10.1
 tensorflow-datasets
-jax
-jaxlib
+--find-links https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
+jax[cuda12_pip]
