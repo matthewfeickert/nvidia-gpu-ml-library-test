@@ -20,7 +20,7 @@ This setup has been tested on the following systems:
 * Dell XPS 15 9510 laptop
    - OS: Ubuntu 22.04
    - CPU: 11th Gen Intel Core i9-11900H @ 16x 4.8GHz
-   - GPU: NVIDIA GeForce RTX 3050 Ti
+   - GPU: NVIDIA GeForce RTX 3050 Ti Laptop GPU
    - NVIDIA Driver: 535
    - Python: 3.10.6 built from source
 * Custom built dekstop
@@ -74,7 +74,7 @@ See the output of `nvidia-smi --help` for more details.
 
 ```console
 $ nvidia-smi --list-gpus
-GPU 0: GeForce GTX 1650 with Max-Q Design (UUID: GPU-7061202f-798a-193c-6ff4-a6131eef00d3)
+GPU 0: NVIDIA GeForce RTX 3050 Ti Laptop GPU (UUID: GPU-9b3a1382-1fb8-43c7-67b1-c28af22b6767)
 ```
 
 ##### Command Line
@@ -93,14 +93,18 @@ to get a list of all devices on the machine that need drivers and the recommende
 ```console
 $ ubuntu-drivers devices
 == /sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0 ==
-modalias : pci:v000010DEd00001F91sv000017AAsd0000229Fbc03sc00i00
+modalias : pci:v000010DEd000025A0sv00001028sd00000A61bc03sc02i00
 vendor   : NVIDIA Corporation
-model    : TU117M [GeForce GTX 1650 Mobile / Max-Q]
-driver   : nvidia-driver-460 - distro non-free
-driver   : nvidia-driver-460-server - distro non-free
-driver   : nvidia-driver-450-server - distro non-free
-driver   : nvidia-driver-418-server - distro non-free
-driver   : nvidia-driver-470 - distro non-free recommended
+model    : GA107M [GeForce RTX 3050 Ti Mobile]
+driver   : nvidia-driver-535-server-open - distro non-free
+driver   : nvidia-driver-525-open - distro non-free
+driver   : nvidia-driver-535-server - distro non-free
+driver   : nvidia-driver-535 - distro non-free recommended
+driver   : nvidia-driver-470-server - distro non-free
+driver   : nvidia-driver-535-open - distro non-free
+driver   : nvidia-driver-470 - distro non-free
+driver   : nvidia-driver-525-server - distro non-free
+driver   : nvidia-driver-525 - distro non-free
 driver   : xserver-xorg-video-nouveau - distro free builtin
 ```
 
@@ -109,7 +113,7 @@ You can now either install the supported driver you want directly through `apt`
 **Example:**
 
 ```console
-sudo apt-get install nvidia-driver-470
+sudo apt-get install nvidia-driver-535
 ```
 
 or you can let `ubnutu-driver` install the recommended driver for you automatically
@@ -134,7 +138,7 @@ sudo apt-get install -y nvidia-cuda-toolkit
 ```console
 $ apt show nvidia-cuda-toolkit | head -n 5
 Package: nvidia-cuda-toolkit
-Version: 10.1.243-3
+Version: 11.5.1-1ubuntu1
 Priority: extra
 Section: multiverse/devel
 Origin: Ubuntu
@@ -155,55 +159,16 @@ So by `pip` installing the `torch` wheel all necessary libraries are installed.
 
 #### JAX
 
-The [GPU version of `jaxlib` will need to be installed](https://github.com/google/jax#pip-installation), and can be determined from the version of `jaxlib` that was installed from PyPI and the version of CUDA installed.
-The GPU release can be installed from Google with
+The [CUDA and CUDNN release wheels can be installed from PyPI and Google with `pip`](https://github.com/google/jax/blob/6eb3096461abdbf622df5ebeee57ee40bdfb66b0/README.md#pip-installation-gpu-cuda-installed-via-pip-easier)
 
 ```console
-python -m pip install --upgrade jax jaxlib==<jaxlib VERSION GOES HERE>+cuda<CUDA VERSION GOES HERE> --find-links https://storage.googleapis.com/jax-releases/jax_releases.html
+python -m pip install --upgrade "jax[cuda12_pip]" --find-links https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
 ```
 
-The version of `jaxlib` installed can be found from `pip` and the version of CUDA installed can be found from
+##### With local CUDA installations
 
-```console
-nvcc --version
-```
-
-**Example:**
-
-```console
-$ pip list | grep jax
-jax                      0.2.18
-jaxlib                   0.1.69
-$ nvcc --version
-nvcc: NVIDIA (R) Cuda compiler driver
-Copyright (c) 2005-2019 NVIDIA Corporation
-Built on Sun_Jul_28_19:07:16_PDT_2019
-Cuda compilation tools, release 10.1, V10.1.243
-```
-
-indicates that
-
-```console
-python -m pip install --upgrade jax jaxlib==0.1.69+cuda101 --find-links https://storage.googleapis.com/jax-releases/jax_releases.html
-```
-
-is needed.
-
-JAX expects to find the CUDA directory structure (what is will assign as the environment variable `CUDA_DIR`) under the path `/usr/local/cuda-x.x` where `x.x` is the CUDA version number that `nvcc --version` gives (`10.1` for example).
-If NVIDIA CUDA Toolkit was installed through the `nvidia-cuda-toolkit` Ubuntu package CUDA will instead be found under `/usr/lib/cuda`.
-To make CUDA findable to JAX a symlink can be created
-
-```console
-sudo ln -s /usr/lib/cuda /usr/local/cuda-x.x
-```
-
-**Example:**
-
-```console
-sudo ln -s /usr/lib/cuda /usr/local/cuda-10.1
-```
-
-To test the location of the installed CUDA release you can set the following environment variable before importing JAX
+To instead install the `jax` and `jaxlib` but use locally installed CUDA and CUDNN versions follow the instructions in the [JAX README](https://github.com/google/jax/blob/main/README.md).
+In these circumstances to test the location of the installed CUDA release you can set the following environment variable before importing JAX
 
 ```console
 XLA_FLAGS=--xla_gpu_cuda_data_dir=/path/to/cuda
@@ -214,8 +179,6 @@ XLA_FLAGS=--xla_gpu_cuda_data_dir=/path/to/cuda
 ```console
 XLA_FLAGS=--xla_gpu_cuda_data_dir=/usr/lib/cuda/ python jax_MNIST.py
 ```
-
-If you have questions on this step refer to the [relevant section in the JAX README](https://github.com/google/jax#pip-installation).
 
 #### TensorFlow
 
