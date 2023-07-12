@@ -409,7 +409,7 @@ With this final set of libraries installed restart your computer.
 
 ### Detect GPU
 
-For all of the ML libaries you can now run the `x_detect_GPU.py` tests which test that the library can properly access the GPU and CUDA, where `x` is the library name/nickname.
+For all of the ML libraries you can now run the `x_detect_GPU.py` tests which test that the library can properly access the GPU and CUDA, where `x` is the library name/nickname.
 
 ### MNIST
 
