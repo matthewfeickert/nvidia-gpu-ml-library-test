@@ -17,12 +17,12 @@ These instructions assume working on [Ubuntu 20.04 LTS](https://releases.ubuntu.
 
 This setup has been tested on the following systems:
 
-* Lenovo ThinkPad X1 Extreme laptop
-   - OS: Ubuntu 20.04
-   - CPU: Intel Core i7-9750H @ 12x 4.5GHz
-   - GPU: GeForce GTX 1650 with Max-Q Design
-   - NVIDIA Driver: 470
-   - Python: 3.8.11 built from source
+* Dell XPS 15 9510 laptop
+   - OS: Ubuntu 22.04
+   - CPU: 11th Gen Intel Core i9-11900H @ 16x 4.8GHz
+   - GPU: NVIDIA GeForce RTX 3050 Ti
+   - NVIDIA Driver: 535
+   - Python: 3.10.6 built from source
 * Custom built dekstop
    - OS: Ubuntu 20.04
    - CPU: AMD Ryzen 9 3900X 12-Core @ 24x 3.906GHz
