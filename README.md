@@ -23,7 +23,7 @@ This setup has been tested on the following systems:
    - GPU: NVIDIA GeForce RTX 3050 Ti Laptop GPU
    - NVIDIA Driver: 535
    - Python: 3.10.6 built from source
-* Custom built dekstop
+* Custom built desktop
    - OS: Ubuntu 20.04
    - CPU: AMD Ryzen 9 3900X 12-Core @ 24x 3.906GHz
    - GPU: GeForce RTX 2080 Ti
@@ -125,7 +125,7 @@ sudo ubuntu-drivers autoinstall
 #### NVIDIA CUDA Toolkit
 
 After installing the NVIDIA driver, the [NVIDIA CUDA Toolkit](https://developer.nvidia.com/cuda-toolkit) also needs to be installed.
-This needs to be done everytime you update the NVIDIA driver.
+This needs to be done every time you update the NVIDIA driver.
 This can be done manually by following the instructions on the NVIDIA website, but it can also be done automatically through `apt` installing the [Ubuntu package `nvidia-cuda-toolkit`](https://packages.ubuntu.com/search?keywords=nvidia-cuda-toolkit).
 
 ```console
@@ -153,7 +153,7 @@ Now that the system NVIDIA drivers are installed the necessary requirements can 
 
 #### PyTorch
 
-PyTorch makes things very easy by [packaging all of the necessary CUDA libraries with its binary distirbutions](https://discuss.pytorch.org/t/newbie-question-what-are-the-prerequisites-for-running-pytorch-with-gpu/698/3) (which is why they are so huge).
+PyTorch makes things very easy by [packaging all of the necessary CUDA libraries with its binary distributions](https://discuss.pytorch.org/t/newbie-question-what-are-the-prerequisites-for-running-pytorch-with-gpu/698/3) (which is why they are so huge).
 So by `pip` installing the `torch` wheel all necessary libraries are installed.
 
 
@@ -230,8 +230,8 @@ sudo ln -s /usr/include/cuda.h /usr/local/cuda/include/cuda.h
 
 #### Install cuDNN Library
 
-1. Navigate to your `<cudnnpath>` directory containing the cuDNN tar file (exmple: `cudnn-11.4-linux-x64-v8.2.2.26.tgz`)
-2. Untar the cuDNN libary tarball (the untarred directory name is `cuda`)
+1. Navigate to your `<cudnnpath>` directory containing the cuDNN tar file (example: `cudnn-11.4-linux-x64-v8.2.2.26.tgz`)
+2. Untar the cuDNN library tarball (the untarred directory name is `cuda`)
 
 ```console
 tar -xzvf cudnn-*-linux-x64-v*.tgz
