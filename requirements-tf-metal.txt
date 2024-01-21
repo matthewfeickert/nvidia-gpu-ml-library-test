@@ -1,0 +1,4 @@
+# c.f. https://developer.apple.com/metal/tensorflow-plugin/
+tensorflow
+tensorflow-metal
+tensorflow-datasets
