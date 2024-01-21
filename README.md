@@ -44,7 +44,7 @@ Examples:
 python -m pip install -r requirements-jax.txt
 ```
 
-* To install the relevant JAX libraries for Apple silicon GPUs
+* To install the relevant JAX libraries for use with Apple silicon GPUs
 
 ```console
 python -m pip install -r requirements-jax-metal.txt
