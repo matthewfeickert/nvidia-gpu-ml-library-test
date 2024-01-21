@@ -150,11 +150,18 @@ def main():
         help="For Saving the current Model",
     )
     args = parser.parse_args()
-    use_cuda = not args.no_cuda and torch.cuda.is_available()
+    use_cuda = not args.no_cuda and (
+        torch.cuda.is_available() or torch.backends.mps.is_available()
+    )
 
     torch.manual_seed(args.seed)
 
-    device = torch.device("cuda" if use_cuda else "cpu")
+    device = "cpu"
+    if use_cuda:
+        if torch.cuda.is_available():
+            device = torch.device("cuda")
+        elif torch.backends.mps.is_available():
+            device = torch.device("mps")
 
     train_kwargs = {"batch_size": args.batch_size}
     test_kwargs = {"batch_size": args.test_batch_size}
