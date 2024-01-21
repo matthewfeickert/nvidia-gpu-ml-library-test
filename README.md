@@ -34,10 +34,20 @@ This setup has been tested on the following systems:
 
 ### Installing Python Libraries
 
-Create a Python virtual environment and install the base libraries
+Create a Python virtual environment and install the base libraries from the relevant `requirements.txt` files.
+
+Examples:
+
+* To install the relevant JAX libraries for use with NVIDIA GPUs
 
 ```console
-python -m pip install -r requirements.txt
+python -m pip install -r requirements-jax.txt
+```
+
+* To install the relevant JAX libraries for Apple silicon GPUs
+
+```console
+python -m pip install -r requirements-jax-metal.txt
 ```
 
 ### Installing NVIDIA Drivers and CUDA Libraries
