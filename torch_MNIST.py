@@ -7,6 +7,7 @@ import torch.nn.functional as F
 import torch.optim as optim
 from torchvision import datasets, transforms
 from torch.optim.lr_scheduler import StepLR
+from pathlib import Path
 
 
 class Net(nn.Module):
@@ -149,7 +150,13 @@ def main():
         default=False,
         help="For Saving the current Model",
     )
+    parser.add_argument(
+        "--data-dir",
+        default=Path.cwd() / "data",
+        help="Path to the directory with the MNIST training data (default: current directory/data)",
+    )
     args = parser.parse_args()
+    args.data_dir = Path(args.data_dir).resolve()
     use_cuda = not args.no_cuda and (
         torch.cuda.is_available() or torch.backends.mps.is_available()
     )
@@ -173,8 +180,10 @@ def main():
     transform = transforms.Compose(
         [transforms.ToTensor(), transforms.Normalize((0.1307,), (0.3081,))]
     )
-    dataset1 = datasets.MNIST("../data", train=True, download=True, transform=transform)
-    dataset2 = datasets.MNIST("../data", train=False, transform=transform)
+    dataset1 = datasets.MNIST(
+        args.data_dir, train=True, download=True, transform=transform
+    )
+    dataset2 = datasets.MNIST(args.data_dir, train=False, transform=transform)
     train_loader = torch.utils.data.DataLoader(dataset1, **train_kwargs)
     test_loader = torch.utils.data.DataLoader(dataset2, **test_kwargs)
 
