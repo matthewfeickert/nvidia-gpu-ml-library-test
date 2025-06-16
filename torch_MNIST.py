@@ -153,7 +153,7 @@ def main():
     parser.add_argument(
         "--data-dir",
         default=Path.cwd() / "data",
-        help="For Saving the current Model",
+        help="Path to the directory with the MNIST training data (default: current directory/data)",
     )
     args = parser.parse_args()
     args.data_dir = Path(args.data_dir).resolve()
