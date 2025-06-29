@@ -130,3 +130,11 @@ dmypy.json
 
 # Text editor configs
 .vscode/
+
+# pixi environments
+.pixi
+*.egg-info
+
+# MNIST
+data/
+*.pt
