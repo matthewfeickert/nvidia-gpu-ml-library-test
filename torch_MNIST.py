@@ -1,13 +1,15 @@
 # https://github.com/pytorch/examples/tree/master/mnist
 from __future__ import print_function
+
 import argparse
+from pathlib import Path
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
-from torchvision import datasets, transforms
 from torch.optim.lr_scheduler import StepLR
-from pathlib import Path
+from torchvision import datasets, transforms
 
 
 class Net(nn.Module):
