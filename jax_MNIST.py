@@ -20,11 +20,15 @@ the mini-library jax.experimental.optimizers is for first-order stochastic
 optimization.
 """
 
-
 import time
 import itertools
 
 import numpy.random as npr
+
+import jax
+
+# c.f. https://github.com/jax-ml/jax/issues/24909
+jax.config.update("jax_default_matmul_precision", "float32")
 
 import jax.numpy as jnp
 from jax import jit, grad, random
@@ -57,7 +61,7 @@ if __name__ == "__main__":
     rng = random.PRNGKey(0)
 
     step_size = 0.001
-    num_epochs = 10
+    num_epochs = 14
     batch_size = 128
     momentum_mass = 0.9
 
