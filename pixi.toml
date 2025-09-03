@@ -36,7 +36,20 @@ matplotlib = ">=3.10.3,<4"
 description = "Perform inference using the trained model on GPU"
 cmd = "python torch_MNIST_inference.py --model-path ./mnist_cnn.pt --data-dir data"
 
+[feature.cpu-jax.dependencies]
+jax = ">=0.7.0,<0.8"
+
+[feature.gpu-jax.system-requirements]
+cuda = "12.6"
+
+[feature.gpu-jax.dependencies]
+# c.f. https://github.com/conda-forge/jaxlib-feedstock/issues/320
+jax = "==0.6.0"
+cuda-version = "12.6.*"
+
 [environments]
 cpu = ["cpu"]
 gpu = ["gpu"]
 inference = ["gpu", "inference"]
+cpu-jax = ["cpu-jax"]
+gpu-jax = ["gpu-jax"]
