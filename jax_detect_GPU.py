@@ -1,8 +1,8 @@
-from jax.lib import xla_bridge
+from jax.extend import backend
 
 if __name__ == "__main__":
-    xla_backend = xla_bridge.get_backend()
-    xla_backend_type = xla_bridge.get_backend().platform  # cpu, gpu, tpu, metal
+    xla_backend = backend.get_backend()
+    xla_backend_type = xla_backend.platform  # cpu, gpu, tpu, metal
     print(f"XLA backend type: {xla_backend_type}")
 
     gpu_backend = xla_backend_type.lower() in ["gpu", "metal"]
