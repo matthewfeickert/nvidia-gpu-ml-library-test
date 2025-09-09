@@ -43,9 +43,8 @@ jax = ">=0.7.0,<0.8"
 cuda = "12.6"
 
 [feature.gpu-jax.dependencies]
-# c.f. https://github.com/conda-forge/jaxlib-feedstock/issues/320
-jax = "==0.6.0"
-cuda-version = "12.6.*"
+jax = ">=0.7.0,<0.8"
+cuda-version = "12.9.*"
 
 [environments]
 cpu = ["cpu"]
