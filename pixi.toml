@@ -9,6 +9,7 @@ version = "0.1.0"
 
 [dependencies]
 python = ">=3.13.5,<3.14"
+time = ">=1.9,<2"
 
 [feature.cpu.dependencies]
 pytorch-cpu = ">=2.7.1,<3"
@@ -27,7 +28,7 @@ torchvision = ">=0.22.0,<0.23"
 
 [feature.gpu.tasks.train-gpu]
 description = "Train MNIST on GPU"
-cmd = "python torch_MNIST.py --epochs 14 --save-model --data-dir data"
+cmd = "time -v python torch_MNIST.py --epochs 14 --save-model --data-dir data"
 
 [feature.inference.dependencies]
 matplotlib = ">=3.10.3,<4"
