@@ -15,7 +15,6 @@
 
 """Datasets used in examples."""
 
-
 import array
 import gzip
 import os
@@ -24,7 +23,6 @@ import struct
 import urllib.request
 
 import numpy as np
-
 
 _DATA = "/tmp/jax_example_data/"
 
